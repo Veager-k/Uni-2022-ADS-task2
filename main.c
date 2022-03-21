@@ -47,9 +47,9 @@ int findSet(int sum, int n, int *numbers, char usedNum[]){
             for(int j = 0; j < n; ++j){ // searching for num3
                 if(usedNum[j] == 0 && numbers[j] == num3){
                     usedNum[j] = 1;
-                    int result = findSet(sum, n, numbers, usedNum);
+                    int setFound = findSet(sum, n, numbers, usedNum);
 
-                    if(result == 1){
+                    if(setFound){
                         printf("%d %d %d\n", num1, num2, num3);
                         return 1;
                     } else{
@@ -62,6 +62,15 @@ int findSet(int sum, int n, int *numbers, char usedNum[]){
             usedNum[i] = 0;
         }
     }
+
+    // freeing first num
+    for(int i = 0; i < n; ++i){
+        if(num1 == numbers[i]){
+            usedNum[i] = 0;
+            break;
+        }
+    }
+
     return 0; //failed to find num2 and num3
 }
 
